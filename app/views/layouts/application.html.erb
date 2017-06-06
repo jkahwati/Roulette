@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jesus</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <nav class="be-red white large-padding">
+
+  	<ul class="no-list row center-xs middle-xs">
+
+  		<li class="col-md">
+  	<h1 class="no-margin" id="logo"> NRoulette </h1>
+  	</li>
+
+  	<li class="col-md">
+  	<%= link_to "Home", root_path %>
+  	</li>
+
+  	<li class="col-md">
+  	<%= link_to "Player", "http://localhost:3000/players" %>
+  	</li>
+  		
+  	</ul>
+
+  </nav>
+
+    <%= yield %>
+  </body>
+</html>
