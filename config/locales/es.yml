@@ -1,0 +1,107 @@
+es:
+  date:
+    abbr_day_names:
+    - Dom
+    - Lun
+    - Mar
+    - Mie
+    - Jue
+    - Vie
+    - Sab
+    abbr_month_names:
+    - 
+    - Ene
+    - Feb
+    - Mar
+    - Abr
+    - May
+    - Jun
+    - Jul
+    - Ago
+    - Sep
+    - Oct
+    - Nov
+    - Dic
+    day_names:
+    - Domingo
+    - Lunes
+    - Martes
+    - Miércoles
+    - Jueves
+    - Viernes
+    - Sabado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names:
+    - 
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Septiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  activerecord:
+    errors:
+      models:
+        player:
+          attributes:
+            name:
+              too_short: El nombre debe tener como mínimo 1 letra 
+              too_long: El nombre debe tener como máximo 255 letras
+            balance:
+              greater_than_or_equal_to: El saldo debe ser igual o superior a 0
+    attributes:
+      company:
+        name: "Nombre"
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
+    page_gap: "&hellip;"
+  errors:
+    messages:
+     delete_association: "No ha sido posible eliminar este objeto puesto que existen otros que lo referencian."
+  helpers:
+    label:
+      player:
+        id: Código
+        name: Nombre
+        balance: Saldo
+        created_at: Fecha de creación
+        updated_at: Ultima actualización
+      game:
+        id: Código
+        result: Resultado
+        bets: Apuestas
+        winners: Ganadores
+        amount: Pozo
+        created_at: Fecha de creación
+      bet:
+        id: Código
+        player: Jugador
+        target: Elección
+        amount: Apuesta
+        result: Resultado
+      forecast:
+        date: Fecha
+        text: Pronóstico (English)
+        rain: ¿Lloverá?
+    submit:
+      create: "Crear nuevo"
+      update: "Guardar"
+    scaffold:
+      new: "Nuevo"
+      edit: "Editar"
+      destroy: "Eliminar"
+      detail: "Detalle"

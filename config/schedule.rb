@@ -20,11 +20,32 @@
 # Learn more: http://github.com/javan/whenever
 
 
+#set :RBENV_VERSION, "2.3.3"
+set :environment, :development
+set :output, "#{path}/log/cron_log.logs"
+env :GEM_PATH, ENV['GEM_PATH']
 
-every 2.minutes do
-  runner "Player.showMessage"
+env :PATH, ENV['PATH']
 
-  #{}"Player.showMessage", environment => "development"
+
+every 3.minutes do
+	command "echo '________________________Empieza el Juego:_____________________________________________________________'"
+	runner "Game.create()"
+	command "echo '________________________Termina el juego_____________________________________________________________'"
+	
+
+	every 1.day do
+		command "echo '________________________empieza el daily_bonus:_____________________________________________________________'"
+		runner "Player.daily_bonus()"
+		command "echo '________________________termina el daily_bonus_____________________________________________________________'"
+	end
+	
+
+	every 1.hour do
+
+		runner "Forecast.request()"
+	end
+	
+
 end
-
 

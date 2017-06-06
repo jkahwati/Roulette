@@ -1,29 +1,49 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Players</h1>
+<div class="row">
+  <div class="col-md-9">
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Cantidad</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-heading-toolbox">
+        <div class="panel-title">
+          Jugadores participando en la simulación
+        </div>
+        <div class="panel-toolbar">
+          <%= link_to new_player_path, :class => "btn btn-success" do %><i class="fa fa-plus"></i> Nuevo<% end %>
+        </div>
+      </div>
+      <div class="panel-body">
 
-  <tbody>
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= player.nombre %></td>
-        <td><%= player.cantidad %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th width="100px"><%= t(:id, scope: [:helpers, :label, :player]) %></th>
+                <th><%= t(:name, scope: [:helpers, :label, :player]) %></th>
+                <th width="150px"><%= t(:balance, scope: [:helpers, :label, :player]) %></th>
+                <th width="170px"><%= t(:created_at, scope: [:helpers, :label, :player]) %></th>
+              </tr>
+            </thead>
 
-<br>
+            <tbody>
+              <% @players.each do |player| %>
+              <tr>
+                <td><%= link_to player do %><%= player.get_code %><% end %></td>
+                <td><%= player.name %></td>
+                <td><%= as_money player.balance %></td>
+                <td><%= player.created_at %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center"><%= will_paginate @players, renderer: BootstrapPagination::Rails %></div>
+      </div>
+    </div>
 
-<%= link_to 'New Player', new_player_path %>
+  </div>
+  <div class="col-md-3">
+
+    <%= render "info" %>
+
+  </div>
+</div>

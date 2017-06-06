@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Jesus</title>
-    <%= csrf_meta_tags %>
+<head>
+<title>Roulette simulator</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+	<header>
+		<nav class="navbar navbar-default">
+		  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Roulette simulator</a>
+		    </div>
 
-  <body>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li><%= link_to "Partidas", :games %></li>
+		        <li><%= link_to "Jugadores", :players %></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	</header>
 
-  <nav class="be-red white large-padding">
+	<section id="main">
+		<div class="container">
+			<%= render partial: "shared/notices" %>
+			<%= yield %>
+		</div>
+	</section>
 
-  	<ul class="no-list row center-xs middle-xs">
+	<footer>
+		<div class="container text-center">
+			<a href="mailto:mariolopezlandes@gmail.com">Mario López Landes</a>, 2016 • <a href="https://github.com/mariowise/nnodes-roulette-challenge"><i class="fa fa-github"></i> Github</a>
+		</div>
+		<br>
+	</footer>
 
-  		<li class="col-md">
-  	<h1 class="no-margin" id="logo"> NRoulette </h1>
-  	</li>
-
-  	<li class="col-md">
-  	<%= link_to "Home", root_path %>
-  	</li>
-
-  	<li class="col-md">
-  	<%= link_to "Player", "http://localhost:3000/players" %>
-  	</li>
-  		
-  	</ul>
-
-  </nav>
-
-    <%= yield %>
-  </body>
+</body>
 </html>

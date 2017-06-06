@@ -4,12 +4,16 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all #Esta variable me sirve para pasar dator a la vista
+    @players = Player.all
+      .paginate(:page => params[:page])
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
+    @bets = @player.bets
+      .order(:created_at => :desc)
+      .limit(15)
   end
 
   # GET /players/new
@@ -28,7 +32,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to @player, notice: 'El jugador ha sido registrado.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.html { redirect_to @player, notice: 'Los datos del jugador han sido actualizados.' }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit }
@@ -56,7 +60,7 @@ class PlayersController < ApplicationController
   def destroy
     @player.destroy
     respond_to do |format|
-      format.html { redirect_to players_url, notice: 'Player was successfully destroyed.' }
+      format.html { redirect_to players_url, notice: 'El jugador ha sido eliminado.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +73,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:nombre, :cantidad)
+      params.require(:player).permit(:name, :balance)
     end
 end

@@ -1,14 +1,76 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @player.nombre %>
-</p>
+<div class="row">
+	<div class="col-md-9">
 
-<p>
-  <strong>Cantidad:</strong>
-  <%= @player.cantidad %>
-</p>
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-toolbox">
+				<div class="panel-title">
+					Información del jugador
+				</div>
+				<div class="panel-toolbar">
+					<%= link_to 'Volver', players_path, :class => "btn btn-link" %>
+					<%= link_to edit_player_path(@player), :class => "btn btn-default" do %><i class="fa fa-pencil"></i> Editar<% end %>
+					<%= link_to @player, method: :delete, data: { confirm: 'Estas seguro que quieres eliminar este jugador?' }, :class => "btn btn-danger" do %><i class="fa fa-trash-o"></i> Eliminar<% end %>
+				</div>
+			</div>
+			<div class="panel-body">
+				
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th><%= t(:id, scope: [:helpers, :label, :player]) %></th>
+							<td><%= @player.get_code %></td>
+						</tr>
+						<tr>
+							<th><%= t(:name, scope: [:helpers, :label, :player]) %>:</th>
+							<td><%= @player.name %></td>
+						</tr>
+						<tr>
+							<th><%= t(:balance, scope: [:helpers, :label, :player]) %>:</th>
+							<td><%= as_money @player.balance %></td>
+						</tr>
+						<tr>
+							<th><%= t(:created_at, scope: [:helpers, :label, :player]) %>:</th>
+							<td><%= @player.created_at %></td>
+						</tr>
+						<tr>
+							<th><%= t(:updated_at, scope: [:helpers, :label, :player]) %>:</th>
+							<td><%= @player.updated_at %></td>
+						</tr>
+					</tbody>
+				</table>
 
-<%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Back', players_path %>
+				<h4>Ultimas apuestas</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th><%= t(:id, scope: [:helpers, :label, :bet]) %></th>
+							<th><%= t(:date, scope: [:helpers, :label, :bet]) %></th>
+							<th><%= t(:amount, scope: [:helpers, :label, :bet]) %></th>
+							<th><%= t(:target, scope: [:helpers, :label, :bet]) %></th>
+							<th><%= t(:result, scope: [:helpers, :label, :game]) %></th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @bets.each do |bet| %>
+								<tr>
+									<td><%= bet.get_code %></td>
+									<td><%= bet.created_at %></td>
+									<td><%= as_money bet.amount %></td>
+									<td><%= bet.target %></td>
+									<td><%= bet.game.result %></td>
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-3">
+
+		<%= render "info" %>
+
+	</div>
+</div>

@@ -1,0 +1,76 @@
+
+<div class="row">
+  <div class="col-md-9">
+
+    <div class="panel panel-default">
+      <div class="panel-heading panel-heading-toolbox">
+        <div class="panel-title">
+          Ultimas partidas simuladas
+        </div>
+        <div class="panel-toolbar">
+          <% if false %>
+          <%= link_to new_game_path, :class => "btn btn-success" do %><i class="fa fa-plus"></i> Nuevo<% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th width="100px"><%= t(:id, scope: [:helpers, :label, :game]) %></th>
+                <th width="170px"><%= t(:created_at, scope: [:helpers, :label, :game]) %></th>
+                <th class="text-center"><%= t(:bets, scope: [:helpers, :label, :game]) %></th>
+                <th class="text-center"><%= t(:winners, scope: [:helpers, :label, :game]) %></th>
+                <th><%= t(:amount, scope: [:helpers, :label, :game]) %></th>
+                <th width="120px"><%= t(:result, scope: [:helpers, :label, :game]) %></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @games.each do |game| %>
+              <tr>
+                <td><%= link_to game do %><%= game.get_code %><% end %></td>
+                <td><%= game.created_at %></td>
+                <td class="text-center"><%= game.bets.count %></td>
+                <td class="text-center"><%= game.winners.count %></td>
+                <td><%= as_money game.amount %></td>
+                <td><%= game.result %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center"><%= will_paginate @games, renderer: BootstrapPagination::Rails %></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <%= render "info" %>
+
+    <hr>
+    <div class="text-center">Estadísticas</div>
+    <br>
+
+    <div class="row">
+      <div class="col-xs-4 text-center">
+        <h4><%= Game.where(:result => "Verde").count %></h4>
+        <p>Verde</p>
+      </div>
+      <div class="col-xs-4 text-center">
+        <h4><%= Game.where(:result => "Rojo").count %></h4>
+        <p>Rojo</p>
+      </div>
+      <div class="col-xs-4 text-center">
+        <h4><%= Game.where(:result => "Negro").count %></h4>
+        <p>Negro</p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+</div>
