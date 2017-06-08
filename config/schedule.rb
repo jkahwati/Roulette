@@ -19,33 +19,36 @@
 
 # Learn more: http://github.com/javan/whenever
 
-
+#--------------------------------------------------------------------------------
 #set :RBENV_VERSION, "2.3.3"
 set :environment, :development
 set :output, "#{path}/log/cron_log.logs"
 env :GEM_PATH, ENV['GEM_PATH']
-
 env :PATH, ENV['PATH']
+#--------------------------------------------------------------------------------
 
-
-every 3.minutes do
-	command "echo '________________________Empieza el Juego:_____________________________________________________________'"
-	runner "Game.create()"
-	command "echo '________________________Termina el juego_____________________________________________________________'"
-	
+#--------------------------------------------------------------------------------
+	every 1.minute do
+		command "echo '_Empieza el Juego:_'"
+		runner "Game.create()"
+		command "echo '_Termina el juego__'"
+	end
+#--------------------------------------------------------------------------------	
 
 	every 1.day do
-		command "echo '________________________empieza el daily_bonus:_____________________________________________________________'"
+		command "echo '_empieza el daily_bonus:__'"
 		runner "Player.daily_bonus()"
-		command "echo '________________________termina el daily_bonus_____________________________________________________________'"
+		command "echo '_termina el daily_bonus__'"
 	end
-	
 
+#--------------------------------------------------------------------------------	
+
+#--------------------------------------------------------------------------------
 	every 1.hour do
-
+		command "echo '_Empieza el forecast:_'"
 		runner "Forecast.request()"
-	end
-	
-
+		command "echo '_Termina el forecast:_'"
 end
+
+#--------------------------------------------------------------------------------
 

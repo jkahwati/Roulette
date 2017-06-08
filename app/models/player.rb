@@ -7,12 +7,13 @@ class Player < ActiveRecord::Base
 		super(attr_with_defaults)
 	end
 
+#--------------------------------------------------------------------------------
 	has_many :bets
 	has_many :games, :through => :bets
-
+#--------------------------------------------------------------------------------
 	validates :name, length: { in: 1..255 }
 	validates :balance, numericality: { greater_than_or_equal_to: 0 }
-
+#--------------------------------------------------------------------------------
 	def self.daily_bonus
 		self.transaction do
 			all.each do |player|
@@ -21,6 +22,7 @@ class Player < ActiveRecord::Base
 			end
 		end
 	end
+	#--------------------------------------------------------------------------------
 
 	def get_code
 		"J-#{id.to_s.rjust(5, '0')}"
@@ -30,3 +32,4 @@ class Player < ActiveRecord::Base
 		"#{name}"
 	end
 end
+#--------------------------------------------------------------------------------

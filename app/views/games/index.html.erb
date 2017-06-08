@@ -2,12 +2,12 @@
 <div class="row">
   <div class="col-md-9">
 
-    <div class="panel panel-default">
-      <div class="panel-heading panel-heading-toolbox">
-        <div class="panel-title">
-          Ultimas partidas simuladas
+    <div class="panel panel-default" style="background:#dffdee;">
+      <div class="panel-heading panel-heading-toolbox" style="background:#4ff4a2;">
+        <div  class="panel-title" >
+          Latest Simulation:
         </div>
-        <div class="panel-toolbar">
+        <div class="panel-toolbar" >
           <% if false %>
           <%= link_to new_game_path, :class => "btn btn-success" do %><i class="fa fa-plus"></i> Nuevo<% end %>
           <% end %>
@@ -51,23 +51,25 @@
 
     <%= render "info" %>
 
-    <hr>
-    <div class="text-center">Estadísticas</div>
+    <hr style="background:#dffdee;">
+    <div class="text-center" style="background:#4ff4a2;" >Winning Colors:</div>
     <br>
 
     <div class="row">
-      <div class="col-xs-4 text-center">
-        <h4><%= Game.where(:result => "Verde").count %></h4>
-        <p>Verde</p>
-      </div>
-      <div class="col-xs-4 text-center">
+    
+      <div class="col-xs-4 text-center" style="color:white; background:red;">
         <h4><%= Game.where(:result => "Rojo").count %></h4>
         <p>Rojo</p>
       </div>
-      <div class="col-xs-4 text-center">
+      <div class="col-xs-4 text-center" style="color:white; background:black;">
         <h4><%= Game.where(:result => "Negro").count %></h4>
         <p>Negro</p>
       </div>
+  <div class="col-xs-4 text-center" style="color:white; background:green;">
+        <h4><%= Game.where(:result => "Verde").count %></h4>
+        <p>Verde</p>
+      </div>
+
     </div>
 
     <hr>
