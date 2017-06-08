@@ -25,7 +25,7 @@ class Forecast < ActiveRecord::Base
 
 #------------Comparo si la temperatura es mayor a 25 los proximos dias en Santiago de Chile----------------------
 
-
+				text= "cg"
 				
 				if (mintemp.to_i > 25 && maxtemp.to_i >25)
 
